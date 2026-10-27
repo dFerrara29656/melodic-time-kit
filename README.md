@@ -27,3 +27,10 @@ Live audio software often needs to know "where in the score am I, given a wall-c
 ## The awkward edge
 
 `beat_in_measure` is 1-based (musicians count "beat 1"), while `measure`, `absolute_beat`, and `fraction_of_beat` are 0-based. This is deliberate and consistent within the library, but it means you cannot mix `beat_in_measure` into arithmetic with the other fields without shifting by one. Negative positions (before the anchor) are supported and produce negative `absolute_beat` and `measure` values, so a count-off before the downbeat maps sensibly.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
