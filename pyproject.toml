@@ -1,6 +1,6 @@
 [project]
 name = "melodic-time-kit"
-version = "0.1.0"
+version = "0.1.1"
 description = "Translates wall-clock time into musical measure, beat, and fractional beat position."
 requires-python = ">=3.10"
 dependencies = []
